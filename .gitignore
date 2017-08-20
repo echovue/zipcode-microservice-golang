@@ -4,6 +4,10 @@
 *.so
 *.dylib
 
+# IDE Specific files and folders
+*.iml
+.idea/
+
 # Test binary, build with `go test -c`
 *.test
 
