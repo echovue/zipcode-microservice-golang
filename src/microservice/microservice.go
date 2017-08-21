@@ -45,7 +45,7 @@ func distanceHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func about (w http.ResponseWriter, r *http.Request) {
-    m := Message{"Zipcode Microservice. \nZipcodes pasesed in as URL parameters.  Response sent as JSON"}
+    m := Message{"Zipcode Microservice. Zipcodes passed in as URL parameters.  Response sent as JSON"}
     b, err := json.Marshal(m)
 
     if err != nil {
