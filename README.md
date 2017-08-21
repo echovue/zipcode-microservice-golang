@@ -2,7 +2,7 @@
 
 **An implementation of my zipcode microservice using Golang**
 
-*The original service is in this repository: [https://github.com/echovue/zipcode-microservice]https://github.com/echovue/zipcode-microservice*
+*The original service is in this repository: https://github.com/echovue/zipcode-microservice*
 
 A Go based microservice which determines the distance for a specific zip code.
 
@@ -14,9 +14,9 @@ To execute this program, you will need to have Go installed and configured on yo
 
 To build the executable, execute the following from the commandline:
 
-go microservice
+`go microservice`
 
-./microservice
+`./microservice`
 
 An example request which you can submit is:
 
@@ -26,9 +26,9 @@ And the response should be:
 
 ```javascript
 {
-    "zipcode1": "97035",
-    "zipcode2": "97001",
-    "distance": "107 miles"
+    "Zipcode1": "97035",
+    "Zipcode2": "97001",
+    "Distance": "107 miles"
 }
 ```
 
@@ -36,9 +36,9 @@ An incorrect request, such as one which includes an invalid zip code should resu
 
 ```javascript
 {
-    "zipcode1": "97035",
-    "zipcode2": "97001",
-    "error": "Unable to calculate distance"
+    "Zipcode1": "97035",
+    "Zipcode2": "97001",
+    "Error": "Unable to calculate distance"
 }
 ```
 
