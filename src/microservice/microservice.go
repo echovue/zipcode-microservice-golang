@@ -27,32 +27,46 @@ type ZipCodeServiceResponse struct {
 }
 
 /**
- * Distance Handler
+ * Distance Calculation Endpoint Handler.
  */
 func distanceHandler(w http.ResponseWriter, r *http.Request) {
-    pathParams := strings.Split(r.URL.Path[1:], "/")
     var responseObject DistanceResponse
+    pathParams := strings.Split(r.URL.Path[1:], "/")
+
     if len(pathParams) < 3 {
         responseObject = buildError(pathParams)
     } else {
         responseObject = calculateDistance(pathParams[1], pathParams[2])
     }
+
     resp, err := json.Marshal(responseObject)
     if err != nil {
         panic(err)
     }
+    w.WriteHeader(200)
     w.Write(resp)
 }
 
+/**
+ * About Endpoint Handler.
+ */
 func about (w http.ResponseWriter, r *http.Request) {
     m := Message{"Zipcode Microservice. Zipcodes passed in as URL parameters.  Response sent as JSON"}
-    b, err := json.Marshal(m)
+    resp, err := json.Marshal(m)
 
     if err != nil {
         panic(err)
     }
+    w.WriteHeader(200)
+    w.Write(resp)
+}
 
-    w.Write(b)
+/**
+ * Health Endpoint Handler.
+ */
+func health(w http.ResponseWriter, r *http.Request) {
+  w.Header().Set("Server", "Go Web Server Hosting ZipCode Service")
+  w.WriteHeader(200)
 }
 
 func buildError(pathParams []string) DistanceResponse {
@@ -108,6 +122,7 @@ func calculateDistance(zipcode1 string, zipcode2 string) DistanceResponse {
 func main() {
     http.HandleFunc("/distance/", distanceHandler)
     http.HandleFunc("/about/", about)
+    http.HandleFunc("/health/", health)
     http.ListenAndServe(":8080", nil)
 }
 
