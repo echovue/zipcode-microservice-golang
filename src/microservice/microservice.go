@@ -87,7 +87,7 @@ func buildError(pathParams []string) DistanceResponse {
 
 func calculateDistance(zipcode1 string, zipcode2 string) DistanceResponse {
     log.Printf("Calculating distance between: %s & %s\n", zipcode1, zipcode2)
-    apiKey := "JTYXJcDQnOzh36tqhOwALppamFMXctMWmKT6WwXklwBoC5PUTlvFKUP7AC5N5RJs"
+    apiKey := "XXXXXXXXXXXXXXXX" //Replace with your own API Key from ZipCodeAPI.com
 
     url := fmt.Sprintf("http://www.zipcodeapi.com/rest/%s/distance.json/%s/%s/mile", apiKey, zipcode1, zipcode2)
 
