@@ -50,7 +50,7 @@ func distanceHandler(w http.ResponseWriter, r *http.Request) {
 /**
  * About Endpoint Handler.
  */
-func about (w http.ResponseWriter, r *http.Request) {
+func aboutHandler (w http.ResponseWriter, r *http.Request) {
     m := Message{"Zipcode Microservice. Zipcodes passed in as URL parameters.  Response sent as JSON"}
     resp, err := json.Marshal(m)
 
@@ -64,7 +64,7 @@ func about (w http.ResponseWriter, r *http.Request) {
 /**
  * Health Endpoint Handler.
  */
-func health(w http.ResponseWriter, r *http.Request) {
+func healthHandler(w http.ResponseWriter, r *http.Request) {
   w.Header().Set("Server", "Go Web Server Hosting ZipCode Service")
   w.WriteHeader(200)
 }
@@ -100,6 +100,10 @@ func calculateDistance(zipcode1 string, zipcode2 string) DistanceResponse {
         log.Fatal("Get: ", err)
     }
 
+    if resp.StatusCode != 200 {
+        log.Printf("zipcodeapi.com returned Status Code: %d", resp.StatusCode)
+        return DistanceResponse{zipcode1, zipcode2, "", "Error retrieving distance for ZipCodeAPI. Check your API Key."}
+    }
     defer resp.Body.Close()
     body, err := ioutil.ReadAll(resp.Body)
 
@@ -121,8 +125,8 @@ func calculateDistance(zipcode1 string, zipcode2 string) DistanceResponse {
  */
 func main() {
     http.HandleFunc("/distance/", distanceHandler)
-    http.HandleFunc("/about/", about)
-    http.HandleFunc("/health/", health)
+    http.HandleFunc("/about/", aboutHandler)
+    http.HandleFunc("/health/", healthHandler)
     http.ListenAndServe(":8080", nil)
 }
 
