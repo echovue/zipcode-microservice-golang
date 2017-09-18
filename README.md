@@ -12,9 +12,9 @@ You will need to update the apiKey property in ZipcodeDistanceService with your 
 
 To execute this program, you will need to have Go installed and configured on your workstation.
 
-To build the executable, execute the following from the commandline:
+To build the executable, execute the following from the commandline in the microservice directory:
 
-`go microservice`
+`go build`
 
 `./microservice`
 
