@@ -43,6 +43,7 @@ func distanceHandler(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         panic(err)
     }
+    w.Header().Set("Content-Type", "application/json")
     w.WriteHeader(200)
     w.Write(resp)
 }
@@ -57,6 +58,7 @@ func aboutHandler (w http.ResponseWriter, r *http.Request) {
     if err != nil {
         panic(err)
     }
+    w.Header().Set("Content-Type", "application/json")
     w.WriteHeader(200)
     w.Write(resp)
 }
